@@ -9,7 +9,7 @@ public class HRDept implements ApplicationContextAware {
  
          public  void recruitEmployee() {
                   System.out.println("Inside RecruitEmployee");
-                  context.publishEvent(new employeeRecruitEvent(this));
+                  context.publishEvent(new EmployeeRecruitEvent(this));
          }
 
          @Override

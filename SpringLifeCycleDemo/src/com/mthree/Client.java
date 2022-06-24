@@ -11,6 +11,8 @@ public class Client {
                   ApplicationContext context = new ClassPathXmlApplicationContext("service.xml");
                   ReportService rs= context.getBean("rs1", ReportService.class);
                   rs.generateReport();
+                  
+                  //to use doDestroy method
                   ConfigurableApplicationContext c= (ConfigurableApplicationContext) context;
                   c.close();
          }

@@ -17,6 +17,7 @@ public abstract class Account {
                   }
                   public Account( double balance, String dateOpened) {
                            super();
+                           setAccountNumber();
                            this.balance = setBalance(balance);
                             //this.dateOpened = dateOpened;
                            setDateOpened(dateOpened);
@@ -112,8 +113,8 @@ public abstract class Account {
                            return "Account Details:- AccountNumber: " + accountNumber + ", Balance: " + balance + ", dateOpened: "
                                              + dateOpened;
                   }
-                  public static synchronized long createAccountNumber()
+                  public static long createAccountNumber()
                   {
-                      return idCounter++;
+                      return ++idCounter;
                   }  
 }

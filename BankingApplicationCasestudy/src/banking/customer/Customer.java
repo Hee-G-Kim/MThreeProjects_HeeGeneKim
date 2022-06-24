@@ -22,7 +22,9 @@ public  class Customer {
                   
                   public Customer( String firstname, String lastname, 
                                     int age, int mobileNumber) {
-                           super();
+                	  
+                	  		super();
+                	  		setCustomerId();
                            this.firstname = firstname;
                            this.lastname = lastname;
                            this.age = age;
@@ -61,7 +63,7 @@ public  class Customer {
                            return null;}
                            else {
                                System.out.println(
-                                   "No Special Characters found in String 1");
+                                   "Your input is fine");
                                return fn;
                            }   
                   }
@@ -103,7 +105,7 @@ public  class Customer {
                   @Override
                   public String toString() {
                            return "Customer Details:- customerId: " + customerId + ", firstname: " + firstname + ", lastname: "
-                                             + lastname + ", age: " + age + ", mobileNumber: " + mobileNumber;
+                                             + lastname + ", age: " + age + ", mobileNumber: " + mobileNumber + account;
                   }
 
 
@@ -112,9 +114,9 @@ public  class Customer {
 
 
 
-                  public static synchronized long createID()
+                  public static long createID()
                   {
-                      return idCounter++;
+                      return ++idCounter;
                   }  
                   
 }

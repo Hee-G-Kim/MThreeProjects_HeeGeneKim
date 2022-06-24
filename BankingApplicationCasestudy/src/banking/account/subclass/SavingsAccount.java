@@ -29,28 +29,6 @@ public class SavingsAccount extends Account implements SalaryAccount {
 
          }
 
-//         @Override
-//         public double setBalance(double balance) {
-
-         /* Todo: set up own exception */
-
-//                           if(balance >0) {
-//                                    return  this.balance = balance;   
-//                           }else 
-//                                    return balance=0;
-
-//                  }else if(!IsSalaryAccount &&  balance < 100){
-//                           System.out.println("Balance needs to be miniumum $100");
-//                           return balance=0;
-//                  }else if(!IsSalaryAccount &&  balance >= 100 ) {
-//                           return  this.balance = balance;
-//                  }else {
-//                           return balance=0;
-//                  }
-
-         // TODO Auto-generated method stub
-         // return super.setBalance(balance);
-//         }
 
          public boolean isIsSalaryAccount() {
                   return IsSalaryAccount;
@@ -70,7 +48,7 @@ public class SavingsAccount extends Account implements SalaryAccount {
 
          @Override
          public void checkBalance() {
-                  //check balance with minimum balance
+                
          }
 
 }
