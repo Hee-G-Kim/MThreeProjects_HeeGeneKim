@@ -9,7 +9,7 @@ public class UserIOConsoleImpl implements UserIO {
 	public void print(String msg) {
 		// TODO Print a given String to the console.
 		// The String value displayed should be passed in as a parameter.
-		System.out.println("msg: " + msg);
+		System.out.println(msg);
 	}
 
 	@Override
@@ -34,12 +34,12 @@ public class UserIOConsoleImpl implements UserIO {
 		 * prompt message and min and max values should be passed in as parameters. The
 		 * value read in from the console should be the return of the method.
 		 */
-		String fullPrompt = prompt + "(" + min + " and " + max + ")";
+	
 
-		Double inputDouble = scanner.nextDouble();
+		Double inputDouble;
 
 		do {
-			print(fullPrompt);
+			print(prompt);
 			inputDouble = scanner.nextDouble();
 		} while (inputDouble > max || inputDouble < min);
 
@@ -69,12 +69,12 @@ public class UserIOConsoleImpl implements UserIO {
 		 * message and min and max values should be passed in as parameters. The value
 		 * read in from the console should be the return of the method.
 		 */ 
-		String fullPrompt = prompt + "(" + min + " and " + max + ")";
+		
 
-		float inputFloat = scanner.nextFloat();
+		float inputFloat;
 
 		do {
-			print(fullPrompt);
+			print(prompt);
 			inputFloat = scanner.nextFloat();
 		} while (inputFloat > max || inputFloat < min);
 
@@ -108,13 +108,13 @@ public class UserIOConsoleImpl implements UserIO {
 		 * Prompt example "enter 2 numbers between 1 and 10"
 		 */
 		
-		String fullPrompt = prompt + "(" + min + " and " + max + ")";
+		 
 
-		int inputInt = scanner.nextInt();
+		int inputInt;
 
 		do {
-			print(fullPrompt);
-			inputInt = scanner.nextInt();
+			System.out.println(prompt + "(" + min + " and " + max + ")");
+			 inputInt = scanner.nextInt();
 		} while (inputInt > max || inputInt < min);
 
 		return inputInt;
@@ -146,12 +146,12 @@ public class UserIOConsoleImpl implements UserIO {
 		 */
 
 
-		String fullPrompt = prompt + "(" + min + " and " + max + ")";
+		
 
-		long inputLong = scanner.nextLong();
+		long inputLong;
 
 		do {
-			print(fullPrompt);
+			print(prompt);
 			inputLong = scanner.nextLong();
 		} while (inputLong > max || inputLong < min);
 
