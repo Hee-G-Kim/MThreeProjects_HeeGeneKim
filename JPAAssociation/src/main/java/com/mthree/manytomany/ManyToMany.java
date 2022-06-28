@@ -9,29 +9,29 @@ import com.mthree.manytomany.Employee;
 import com.mthree.utility.EntityManagerHelper;
 
 public class ManyToMany {
-	
 	EntityManager em= EntityManagerHelper.getEntityManager();
 	
-	Employee e1 = new Employee("Tal","Singh");
+	Employee e1 = new Employee("Taljeet","Singh");
 	Employee e2 = new Employee("Bob","Builder");
 	Employee e3 = new Employee("John","Ross");
-	//Create 2 LISTS
-	List<Employee> javaExperts = new ArrayList<>();
-	javaExperts.add(e1);
+
+	List<Employee> empList1  =new ArrayList<>();
+	empList1.add(e1);
+	empList1.add(e2);
 	
-	List<Employee> pythonExperts = new ArrayList<>();
-	pythonExperts.add(e1);
-	pythonExperts.add(e3);
+	List<Employee> empList2 =new ArrayList<>();
+	empList2.add(e1);
+	empList2.add(e3);
 	
 	
-	TechSkill t1 = new TechSkill();
-	t1.
-	//Peristemce
+	List<TechSkill> java =new ArrayList<>();
+	List<TechSkill> python =new ArrayList<>();
+
 	EntityTransaction tx = em.getTransaction();
 	tx.begin();
-	em.persist(e1);
-	em.persist(e2);
-	em.persist(e3);
+//	em.persist(dept1);
+//	em.persist(dept2);
+	//em.persist(e1);
 	tx.commit();
 
 }

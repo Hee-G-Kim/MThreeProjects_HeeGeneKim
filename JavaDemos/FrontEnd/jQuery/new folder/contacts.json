@@ -1,0 +1,50 @@
+[
+    {
+        "contactId": 1,
+        "firstName": "Ada",
+        "lastName": "Lovelace",
+        "company": "Babbage Industries",
+        "phone": "5024241337",
+        "email": "ada@originalhax0r.com"
+    },
+    {
+        "contactId": 3,
+        "firstName": "Jean Luc",
+        "lastName": "Picard",
+        "company": "USS Enterprise",
+        "phone": "9043934035",
+        "email": "jpicard@enterprise.us"
+    },
+    {
+        "contactId": 5,
+        "firstName": "Seven",
+        "lastName": "Of 9",
+        "company": "Voyager",
+        "phone": "9483823252",
+        "email": "7of9@alphaquadrant.io"
+    },
+    {
+        "contactId": 9,
+        "firstName": "Louise",
+        "lastName": "Banks",
+        "company": "Circle Of Life LLC",
+        "phone": "1230492034",
+        "email": "lbanks@itsfullofstars.com"
+    },
+    {
+        "contactId": 11,
+        "firstName": "Malcon",
+        "lastName": "Reynolds",
+        "company": "Serenity Shipping",
+        "phone": "9004830192",
+        "email": "capn@serenity.biz"
+    },
+    {
+        "contactId": 1337,
+        "firstName": "Charles",
+        "lastName": "Babbage",
+        "company": "Babbage Industries",
+        "phone": "5024242001",
+        "email": "chuck@originalhax0r.com"
+    }
+]

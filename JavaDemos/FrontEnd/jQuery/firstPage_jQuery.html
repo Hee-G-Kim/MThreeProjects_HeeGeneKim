@@ -1,0 +1,79 @@
+<html>
+
+<head>
+
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+        </script>
+        
+        <!--*javascript no return type-->
+        
+        <script>
+            $(document).ready(function () {
+                alert("Ready to go!!!");
+            });
+            $(document).ready(function (){
+                $("p").click(function(){
+                    $(this).hide();
+                });
+            });
+        </script>
+    
+        
+    
+
+</head>
+
+<body>
+    <h1>First page using global CDN JQuery</h1>
+    <p>click on me and I disasaper</p>
+    <p>click me</p>
+    <p>click me too</p>
+</body>
+
+</html>
+
+
+
+
+
+
+
+<!-- 
+<script>
+    $(document).ready(function () {
+        alert("Ready to go!!!");
+    });
+    $(document).ready(function (){
+        $("p").click(function(){
+            $(this).hide();
+        });
+    });
+</script>
+ -->
+
+
+
+
+
+<!--JQUery is open-source JavaScript libraries used for web development
+jQuery allows developers to manipulate HTML, respond to browser events, and make Ajax 
+calls in a consistent way across different browser types.
+-->
+
+<!--
+The integrity and crossorigin attributes are used for Subresource Integrity (SRI) checking. 
+This allows browsers to ensure that resources hosted on third-party servers have not been 
+tampered with. Use of SRI is recommended as a best-practice, whenever libraries are loaded 
+from a third-party source.
+-->
+
+<!--
+ jQuery can tell us when all the elements of the page have been rendered. 
+ jQuery has an event called 
+ ready that fires when all the elements have been rendered.
+
+  Find something: selector
+  Do something: event handler
+-->

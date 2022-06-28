@@ -7,8 +7,9 @@
 	<persistence-unit name="jpaassociation" transaction-type="RESOURCE_LOCAL">
 		<description>Hibernate First Demo with JPA</description>
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<class>com.mthree.manytomany.Employee</class>
-		<class>com.mthree.manytomany.TechSkills</class>
+		<class>com.mthree.singletable.Employee</class>
+		<class>com.mthree.singletable.PermanentEmployee</class>
+		<class>com.mthree.singletable.ContractEmployee</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
