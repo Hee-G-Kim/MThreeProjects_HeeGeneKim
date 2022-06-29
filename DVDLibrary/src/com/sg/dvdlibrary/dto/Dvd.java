@@ -1,9 +1,11 @@
 package com.sg.dvdlibrary.dto;
 
+import java.util.Date;
+
 public class Dvd {
 
-	private String title;
-	private String releaseDate;
+	private String dvdTitle;
+	private Date releaseDate;
 	private int MPAARating;
 	private String directorsName;
 	private String studio;
@@ -12,27 +14,22 @@ public class Dvd {
 	public Dvd() {
 		super();
 	}
-	public Dvd(String title, String releaseDate, int mPAARating, String directorsName, String studio,
-			String userReview) {
+	public Dvd(String title) {
 		super();
-		this.title = title;
-		this.releaseDate = releaseDate;
-		MPAARating = mPAARating;
-		this.directorsName = directorsName;
-		this.studio = studio;
-		this.userReview = userReview;
+		this.dvdTitle = title;
+	
 	}
 	
-	public String getTitle() {
-		return title;
+	public String getDvdTitle() {
+		return dvdTitle;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setDvdTitle(String title) {
+		this.dvdTitle = title;
 	}
-	public String getReleaseDate() {
+	public Date getReleaseDate() {
 		return releaseDate;
 	}
-	public void setReleaseDate(String releaseDate) {
+	public void setReleaseDate(Date releaseDate) {
 		this.releaseDate = releaseDate;
 	}
 	public int getMPAARating() {

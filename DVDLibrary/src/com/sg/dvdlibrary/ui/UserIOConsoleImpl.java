@@ -1,6 +1,11 @@
 package com.sg.dvdlibrary.ui;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
+
+import com.sg.dvdlibrary.dao.DVDLibraryDaoException;
 
 public class UserIOConsoleImpl implements UserIO {
 
@@ -168,5 +173,18 @@ public class UserIOConsoleImpl implements UserIO {
 		print(prompt);
 		String inputString = scanner.nextLine();
 		return inputString;
+	}
+
+	@Override
+	public Date readDate(String string) throws DVDLibraryDaoException {
+		    
+		    Date date = null;
+			try {
+				date = new SimpleDateFormat("dd/MM/yyyy").parse(string);
+			} catch (Exception e) {
+				throw new DVDLibraryDaoException("-_- date format error", e);
+			}  
+		     
+		return date;
 	}
 }

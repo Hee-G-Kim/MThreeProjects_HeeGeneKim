@@ -12,35 +12,39 @@ import com.sg.classroster.ui.UserIOConsoleImpl;
 
 public class ClassRosterController {
 
-	//private ClassRosterView view = new ClassRosterView();
-	//private ClassRosterDao dao = new ClassRosterDaoFileImpl();
-	private ClassRosterView view ;
-	private ClassRosterDao dao ;
-	
+	// private ClassRosterView view = new ClassRosterView();
+	// private ClassRosterDao dao = new ClassRosterDaoFileImpl();
+	private ClassRosterView view;
+	private ClassRosterDao dao;
+
 	public ClassRosterController(ClassRosterDao dao, ClassRosterView view) {
 		this.dao = dao;
 		this.view = view;
-		}
-	
+	}
+
 	private UserIO io = new UserIOConsoleImpl();
 
 	public void run() {
 
 		boolean keepGoing = true;
 		int menuSelection = 0;
-		
+
 		try {
 			while (keepGoing) {
-				
-				/*
-				 * io.print("Main Menu"); io.print("1. List Student IDs");
-				 * io.print("2. Create New Student"); io.print("3. View a Student");
-				 * io.print("4. Remove a Student"); io.print("5. Exit");
-				 */
 
-				//menuSelection = io.readInt("Please select from the" + " above choices.", 1, 5);
-				menuSelection = getMenuSelection();
 				
+				  io.print("Main Menu"); 
+				  io.print("1. List Student IDs");
+				  io.print("2. Create New Student"); 
+				  io.print("3. View a Student");
+				  io.print("4. Remove a Student"); 
+				  io.print("5. Exit");
+				
+
+				 menuSelection = io.readInt("Please select from the" +
+				 " above choices.", 1, 5);
+				//menuSelection = getMenuSelection();
+
 				switch (menuSelection) {
 				case 1:
 					io.print(">");
@@ -64,7 +68,7 @@ public class ClassRosterController {
 					io.print(">");
 					io.print("REMOVE STUDENT");
 					removeStudent();
-					
+
 					break;
 				case 5:
 					keepGoing = false;
@@ -73,14 +77,14 @@ public class ClassRosterController {
 					io.print(">");
 					io.print("UNKNOWN COMMAND");
 					unknownCommand();
-					
+
 				}
 
 			}
 			exitMessage();
-			//io.print("GOOD BYE");
+			// io.print("GOOD BYE");
 		} catch (ClassRosterDaoException e) {
-			//e.printStackTrace();
+			// e.printStackTrace();
 			view.displayErrorMessage(e.getMessage());
 		}
 
@@ -90,20 +94,18 @@ public class ClassRosterController {
 	private int getMenuSelection() {
 		return view.printMenuAndGetSelection();
 	}
-	
-	
+
+	private void listStudents() throws ClassRosterDaoException {
+		view.displayDisplayAllBanner();
+		List<Student> studentList = dao.getAllStudents();
+		view.displayStudentList(studentList);
+	}
 	
 	private void createStudent() throws ClassRosterDaoException {
 		view.displayCreateStudentBanner();
 		Student newStudent = view.getNewStudentInfo();
 		dao.addStudent(newStudent.getStudentId(), newStudent);
 		view.displayCreateSuccessBanner();
-	}
-
-	private void listStudents() throws ClassRosterDaoException {
-		view.displayDisplayAllBanner();
-		List<Student> studentList = dao.getAllStudents();
-		view.displayStudentList(studentList);
 	}
 
 	private void viewStudent() throws ClassRosterDaoException {
@@ -120,13 +122,12 @@ public class ClassRosterController {
 		view.displayRemoveResult(removedStudent);
 	}
 
-	
 	private void unknownCommand() {
 		view.displayUnknownCommandBanner();
 	}
+
 	private void exitMessage() {
 		view.displayExitBanner();
 	}
-	
 
 }

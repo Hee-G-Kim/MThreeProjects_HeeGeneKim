@@ -1,5 +1,12 @@
 package com.sg.dvdlibrary.ui;
 
+import java.text.ParseException;
+import java.util.Date;
+import java.util.List;
+
+import com.sg.dvdlibrary.dao.DVDLibraryDaoException;
+import com.sg.dvdlibrary.dto.Dvd;
+
 public class DVDLibraryView {
 
 	// ???private UserIO io = new UserIOConsoleImpl();
@@ -10,19 +17,30 @@ public class DVDLibraryView {
 			this.io = io;
 		}
 
-		public Dvd getNewDvdInfo() {
+		public Dvd getNewDvdInfo() throws DVDLibraryDaoException {
 
 			/* Does not work here */
 			// io = new UserIOConsoleImpl();
 
-			String dvdId = io.readString("Please enter Dvd ID");
-			String firstName = io.readString("Please enter First Name");
-			String lastName = io.readString("Please enter Last Name");
-			String cohort = io.readString("Please enter Cohort");
-			Dvd currentDvd = new Dvd(dvdId);
-			currentDvd.setFirstName(firstName);
-			currentDvd.setLastName(lastName);
-			currentDvd.setCohort(cohort);
+			String dvdTitle = io.readString("Please enter Dvd title");
+			Date releaseDate;
+			try {
+				releaseDate = io.readDate("Please enter release date");
+			} catch (Exception e) {
+				throw new DVDLibraryDaoException("-_- date format error.", e);
+			}
+			int MPAARating = io.readInt("Please enter MPAA Rating");
+			String directorsName = io.readString("Please enter directors name ");
+			String studio= io.readString("Please enter  studio name");
+			String userReview= io.readString("Please enter user review");
+			
+			Dvd currentDvd = new Dvd(dvdTitle);
+			currentDvd.setReleaseDate(releaseDate);
+			currentDvd.setMPAARating(MPAARating);
+			currentDvd.setDirectorsName(directorsName);
+			currentDvd.setStudio(studio);
+			currentDvd.setUserReview(userReview);
+			
 			return currentDvd;
 		}
 
@@ -36,8 +54,8 @@ public class DVDLibraryView {
 
 		public void displayDvdList(List<Dvd> dvdList) {
 			for (Dvd currentDvd : dvdList) {
-				String dvdInfo = String.format("#%s : %s %s", currentDvd.getDvdId(),
-						currentDvd.getFirstName(), currentDvd.getLastName());
+				String dvdInfo = String.format("#%s : %s %s", currentDvd.getDvdTitle(),
+						currentDvd.getReleaseDate(), currentDvd.getMPAARating());
 				io.print(dvdInfo);
 			}
 			io.readString("Please hit enter to continue.");
@@ -51,15 +69,16 @@ public class DVDLibraryView {
 			io.print("=== Display Dvd ===");
 		}
 
-		public String getDvdIdChoice() {
-			return io.readString("Please enter the Dvd ID.");
+		public String getDvdTitleChoice() {
+			return io.readString("Please enter the Dvd Title.");
 		}
 
 		public void displayDvd(Dvd dvd) {
 			if (dvd != null) {
-				io.print(dvd.getDvdId());
-				io.print(dvd.getFirstName() + " " + dvd.getLastName());
-				io.print(dvd.getCohort());
+				io.print(dvd.getDvdTitle());
+				io.print(dvd.getReleaseDate() + " " + dvd.getMPAARating());
+				io.print(dvd.getStudio());
+				io.print(dvd.getUserReview());
 				io.print("");
 			} else {
 				io.print("No such dvd.");

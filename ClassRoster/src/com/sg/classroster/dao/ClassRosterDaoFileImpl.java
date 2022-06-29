@@ -1,6 +1,7 @@
 package com.sg.classroster.dao;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -73,6 +74,7 @@ public class ClassRosterDaoFileImpl implements ClassRosterDao {
 		Scanner scanner;
 		try {
 			// Create Scanner for reading the file
+			System.out.println(new File(ROSTER_FILE).getAbsolutePath());
 			scanner = new Scanner(new BufferedReader(new FileReader(ROSTER_FILE)));
 		} catch (FileNotFoundException e) {
 			throw new ClassRosterDaoException("-_- Could not load roster data into memory.", e);
