@@ -54,7 +54,7 @@ public class DVDLibraryController {
 					io.print(">");
 					io.print("CREATE DVD");
 					createDvd();
-
+					io.print("Dvd success");
 					break;
 				case 3:
 					io.print(">");

@@ -105,4 +105,9 @@ public class ClassRosterView {
 		io.print(errorMsg);
 		}
 
+	public void displayRemoveSuccessBanner() {
+		System.out.println("Student successfully removed");
+		
+	}
+
 }

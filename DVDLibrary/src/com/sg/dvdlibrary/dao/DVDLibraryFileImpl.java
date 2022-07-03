@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,8 +42,14 @@ public class DVDLibraryFileImpl implements DVDLibraryDao {
 		
 			String[] dvdTokens = dvdAsText.split(DELIMITER);
 			String dvdName= dvdTokens[0];
+			System.out.println(dvdTokens[1]);
 			Dvd dvdFromFile = new Dvd(dvdName);
-			dvdFromFile.setReleaseDate(io.readDate( dvdTokens[1]));
+			try {
+				dvdFromFile.setReleaseDate(new SimpleDateFormat("dd/MM/yyyy").parse( dvdTokens[1]));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			dvdFromFile.setMPAARating(Integer.parseInt(dvdTokens[2]));
 			dvdFromFile.setDirectorsName(dvdTokens[3]);
 			dvdFromFile.setStudio(dvdTokens[3]);
@@ -80,7 +88,7 @@ public class DVDLibraryFileImpl implements DVDLibraryDao {
 			
 			String dvdAsText = aDvd.getDvdTitle() + DELIMITER;
 		
-			dvdAsText += aDvd.getReleaseDate() + DELIMITER;
+			dvdAsText += aDvd.getReleaseDate() + DELIMITER; ///???
 			dvdAsText += aDvd.getMPAARating() + DELIMITER;
 			dvdAsText += aDvd.getDirectorsName() + DELIMITER;
 			dvdAsText += aDvd.getStudio()+ DELIMITER;

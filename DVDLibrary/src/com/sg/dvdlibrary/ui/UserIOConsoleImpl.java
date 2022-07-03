@@ -171,7 +171,7 @@ public class UserIOConsoleImpl implements UserIO {
 		// message should be passed in as a parameter and the String value read in
 		// should be the return value of the method.
 		print(prompt);
-		String inputString = scanner.nextLine();
+		String inputString = scanner.next();
 		return inputString;
 	}
 
@@ -179,8 +179,10 @@ public class UserIOConsoleImpl implements UserIO {
 	public Date readDate(String string) throws DVDLibraryDaoException {
 		    
 		    Date date = null;
+		    print(string);
+			String inputString = scanner.next();
 			try {
-				date = new SimpleDateFormat("dd/MM/yyyy").parse(string);
+				date = new SimpleDateFormat("dd/MM/yyyy").parse(inputString);
 			} catch (Exception e) {
 				throw new DVDLibraryDaoException("-_- date format error", e);
 			}  
