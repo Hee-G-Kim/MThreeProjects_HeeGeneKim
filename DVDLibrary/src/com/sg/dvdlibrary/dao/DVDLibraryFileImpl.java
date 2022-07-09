@@ -87,8 +87,8 @@ public class DVDLibraryFileImpl implements DVDLibraryDao {
 		private String marshallDvd(Dvd aDvd) {
 			
 			String dvdAsText = aDvd.getDvdTitle() + DELIMITER;
-		
-			dvdAsText += aDvd.getReleaseDate() + DELIMITER; ///???
+		    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+			dvdAsText += formatter.format(aDvd.getReleaseDate()) + DELIMITER; ///???
 			dvdAsText += aDvd.getMPAARating() + DELIMITER;
 			dvdAsText += aDvd.getDirectorsName() + DELIMITER;
 			dvdAsText += aDvd.getStudio()+ DELIMITER;
