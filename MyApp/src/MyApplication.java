@@ -1,27 +1,91 @@
 import java.util.Map;
+import java.util.Scanner;
 import java.util.TreeMap;
 
 import javax.swing.text.html.HTMLDocument.Iterator;
 
+
+abstract class Cuisine {
+    public abstract Cuisine serveFood(String dish);
+}
+
+class UnservableCuisineRequestException extends Exception {
+    public UnservableCuisineRequestException(String message) {
+        super(message);
+    }
+}
+
 public class MyApplication {
+	
+	private static final Scanner INPUT_READER = new Scanner(System.in);
+    private static final FoodFactory FOOD_FACTORY = FoodFactory.getFactory();
+	
+    static {
+        FoodFactory.getFactory().registerCuisine("Chinese", new Chinese());
+        FoodFactory.getFactory().registerCuisine("Italian", new Italian());
+        FoodFactory.getFactory().registerCuisine("Japanese", new Japanese());
+        FoodFactory.getFactory().registerCuisine("Mexican", new Mexican());
+    }
+    
+    public class FoodFactory {
+    	
+    	
+        
+        
+        public FoodFactory() {
+			super();
+			// TODO Auto-generated constructor stub
+		}
+		public FoodFactory getFactory(){
+            return this;
+        }
+        public void registerCuisine(String cuisineKey, Cuisine cuisine){
+            
+        }
+        
+        public Cuisine serveCuisine(String cusineKey, String dish){
+            
+        }
+        
+    }
+    
+    
+    public static void main(String[] args) {
+        int totalNumberOfOrders = Integer.parseInt(INPUT_READER.nextLine());
+        while (totalNumberOfOrders-- > 0) {
+            String[] food = INPUT_READER.nextLine().split(" ");
+            String cuisine = food[0];
+            String dish = food[1];
 
-         public static void main(String[] args) {
-                  Map<String, int[]> map = new TreeMap<String, int[]>();
+            try {
+                if (FOOD_FACTORY.equals(FoodFactory.getFactory())) {
+                    Cuisine servedFood = FOOD_FACTORY.serveCuisine(cuisine, dish);
 
-                  int[] array = new int[3];
-                  array[0] = 0;
-                  array[1] = 1;
-                  array[2] = 2;
-                  map.put("array", array);
-
-                  // Iterator<String> iter = map.keySet().iterator();
-
-                  /*
-                   * while (iter.hasNext()) { String arrayName = iter.next(); array =
-                   * map.get(arrayName); System.out.print(arrayName + ":"); for (int i = 0; i <
-                   * array.length; i++) { System.out.print(array[i]); } }
-                   */
-
-         }
+                    switch (cuisine) {
+                        case "Chinese":
+                            Chinese chineseDish = (Chinese) servedFood;
+                            System.out.println("Serving " + chineseDish.getDish() + "(Chinese)");
+                            break;
+                        case "Italian":
+                            Italian italianDish = (Italian) servedFood;
+                            System.out.println("Serving " + italianDish.getDish() + "(Italian)");
+                            break;
+                        case "Japanese":
+                            Japanese japaneseDish = (Japanese) servedFood;
+                            System.out.println("Serving " + japaneseDish.getDish() + "(Japanese)");
+                            break;
+                        case "Mexican":
+                            Mexican mexicanDish = (Mexican) servedFood;
+                            System.out.println("Serving " + mexicanDish.getDish() + "(Mexican)");
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            } catch (UnservableCuisineRequestException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
 
 }
