@@ -169,6 +169,13 @@ public class UserIOConsoleImpl implements UserIO {
 		String inputString = scanner.nextLine();
 		return inputString;
 	}
+
+	@Override
+	public char readChar(String prompt) {
+		print(prompt);
+		String inputString = scanner.next();
+		return inputString.charAt(0);
+	}
 	
 	
 	

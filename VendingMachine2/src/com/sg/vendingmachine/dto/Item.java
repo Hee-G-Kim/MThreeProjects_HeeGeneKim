@@ -8,14 +8,11 @@ public class Item {
 
 	
 	
-	// int cost;
-	//private int stockAmount;
-	
-	private String firstName;
-	private String lastName;
 	private String itemId;
-	// Programming Language + cohort month/year
-	private String cohort;
+	private String Name;
+	private double price;
+	private int stockAmount;
+	
 
 	public Item() {
 		
@@ -25,37 +22,37 @@ public class Item {
 		this.itemId = itemId;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getName() {
+		return Name;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setName(String name) {
+		this.Name = name;
 	}
 
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
+	
 	public String getItemId() {
 		return itemId;
 	}
 
-	public String getCohort() {
-		return cohort;
+	public int getStockAmt() {
+		return stockAmount;
 	}
 
-	public void setCohort(String cohort) {
-		this.cohort = cohort;
+	public void setStockAmt(int amount) {
+		this.stockAmount = amount;
+	}
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double amount) {
+		this.price = amount;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(cohort, firstName, lastName, itemId);
+		return Objects.hash(itemId, Name, price, stockAmount);
 	}
 
 	@Override
@@ -67,16 +64,16 @@ public class Item {
 		if (getClass() != obj.getClass())
 			return false;
 		Item other = (Item) obj;
-		return Objects.equals(cohort, other.cohort) 
-				&& Objects.equals(firstName, other.firstName)
-				&& Objects.equals(lastName, other.lastName) 
+		return Objects.equals(stockAmount, other.stockAmount) 
+				&& Objects.equals(Name, other.Name)
+				&& Objects.equals(price, other.price) 
 				&& Objects.equals(itemId, other.itemId);
 	}
 
 	@Override
 	public String toString() {
-		return "Item [firstName=" + firstName + ", lastName=" + lastName 
-				+ ", itemId=" + itemId + ", cohort=" + cohort + "]";
+		return "Item [Name=" + Name + ", price=" + price 
+				+ ", itemId=" + itemId + ", Stock Amount=" + stockAmount + "]";
 	}
 
 	

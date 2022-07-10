@@ -26,41 +26,39 @@
 					<form id="frmStudent" name="frmStudent">
 	
 						<div class="form-group" aligh="left">
-							<label>Student First Name</label> <input type="text" id="stname"
-								name="firstname" placeholder="Student First Name"
+							<label>Student First Name</label> <input type="text" id="fname"
+								name="firstName" placeholder="Student First Name"
 								class="form-control" required>
 						</div>
 	
 						<div class="form-group" aligh="left">
-							<label>Student Last Name</label> <input type="text" id="course"
+							<label>Student Last Name</label> <input type="text" id="lname"
 								name="lastname" placeholder="Student Last Name"
 								class="form-control" required>
 						</div>
 	
 						<div class="form-group" aligh="left">
-							<label>Student Age</label> <input type="text" id="course"
+							<label>Student Age</label> <input type="text" id="age"
 								name="age" placeholder="Age" class="form-control" required>
 						</div>
-						v
+						
 	
 						<div class="form-group" aligh="left">
-							<label>Student address</label> <input type="text" id="course"
+							<label>Student address</label> <input type="text" id="address"
 								name="address" placeholder="Address" class="form-control"
 								required>
 						</div>
 	
 						<div class="form-group" aligh="left">
 							<label>Student postcode/label> <input type="text"
-								id="course" name="postcode" placeholder="Postcode"
+								id="postcode" name="postcode" placeholder="Postcode"
 								class="form-control" required>
 						</div>
 	
 						<div class="form-group" aligh="left">
 							<button type="button" class="btn btn-success" id="save"
-								placeholder="Course" onclick="addStudent()">Add</button>
-							<button type="button" class="btn btn-warning id ="
-								reset" 
-							placeholder="Course" onclick="reset()">Reset</button>
+								placeholder="Add Student" onclick="addStudent()">Add</button>
+							<button type="button" class="btn btn-warning" id ="reset" placeholder="Add student" onclick="reset()">Reset</button>
 						</div>
 	
 					</form>
@@ -97,172 +95,179 @@
 		<script src="component/DataTables/datatables.min.js" type="text/javascript"></script>
 	
 	
-		<script>
-			var isNew =true;
-			var stuid =null;
-			getall();
-			
-			function addStudent()
-			{
-				
-				if(().valid()){
-					
-					if(){
-						
-						
-					}
-					else
-					{
-						
-						
-					}
-					
-					
-					
-					$.ajax({
-						
-						
-						success:function(data)
-						{
-							
-							
-							
-							if()
-								{
-								alert( "");
-								}
-							else
-								{
-								
-									alert("error");
-								}
-							
-						}
-						
-						
-						
-					});
-					
-					
-				}
-			}
+	
+	 <script src="component/jquery/jquery.js" type="text/javascript"></script>
+        <script src="component/jquery/jquery.min.js" type="text/javascript"></script>
+        <script src="component/jquery.validate.min.js" type="text/javascript"></script>
+         <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript"></script>
+
+        <script>
+            
+            getall();
+            var isNew = true;
+            var studentid = null;
+            
+            function addStudent()
+            {
+                if($("#frmStudent").valid())
+                {     
+                    var url="";
+                    var data= "";
+                    var method;
+
+                    if(isNew==true)
+                    {
+                        
+                        url = '/addstudent';
+                        data = $("#frmStudent").serialize();
+                        method = 'POST' 
+                    }
+                    else
+                    {
+                        
+                        url = '/update';
+                        data = $("#frmStudent").serialize() + "&studentid=" + studentid;
+                        method = 'POST'
+
+                    }
+                    $.ajax({
+                        
+                        type: method,
+                        url : url,
+                        dataType: 'JSON',
+                        data : data,
+                        
+                        success:function(data)
+                        {
+                            getall();
+                            
+                            $('#fname').val("");
+                            $('#lname').val("");
+                            $('#age').val("");
+                            $('#address').val("");
+                            $('#postcode').val("");
+                            
+                            if(isNew ==true)
+                            {
+                                alert("Record Added");
+                            }
+                            else
+                            {
+                                 alert("Record Updated");
+                                
+                            }
+                        }
+
+                    });
+  
+                }
+       
+            }
+
+            function getall()
+            {
+                
+                $('#tbl-student').dataTable().fnDestroy();
+                $.ajax({
+                    
+                    url: "/students",
+                    type : "GET",
+                    dataType : "JSON",
+                    
+                    success:function(data)
+                    {
+                        
+                       $('#tbl-student').dataTable({
+                           "aaData":data,
+                           "scrollX": true,
+                           "aoColumns":
+                                   [
+                               
+                                    {"sTitle": "Student Name","mData": "firstName"}, 
+                                    {"sTitle": "Last Name","mData": "lastName"},
+                                    {"sTitle": "Age","mData": "age"},
+                                    {"sTitle": "Address","mData": "address"},
+                                    {"sTitle": "PostCode","mData": "postcode"},
+                                    
+                                    {
+                                        "sTitle": 
+                                        "Edit",
+                                        "mData": "id",
+                                        "render" : function(mData,type,row,meta)
+                                        {
+                                            return '<button class="btn btn-success" onclick="get_details('+ mData +')">Edit</button>';
+                                        }
+                                   },
+                                    
+                               {
+                                        "sTitle": 
+                                        "Delete",
+                                        "mData": "id",
+                                        "render" : function(mData,type,row,meta)
+                                        {
+                                            return '<button class="btn btn-danger" onclick="get_delete('+ mData +')">Delete</button>';
+                                        }
+                                   },      
+                                   ] 
+                       }); 
+                       
+                    }   
+                   
+                });
+                
+                
+            }
+
+            function get_details(id)
+            {
+             
+                $.ajax({
+                    
+                    type: "POST",
+                    url : "/update",
+                    data : {"id": id},
+               
+                    
+                    success: function(data)
+                    {
+                        isNew = false
+                        var obj = JSON.parse(data);
+                        studentid = obj[0].id
+                        $('#stname').val(obj[0].firstName);
+                        $('#lname').val(obj[0].lastName);
+                        $('#age').val(obj[0].age);
+                        $('#addreds').val(obj[0].address);
+                        $('#postcode').val(obj[0].postcode);
+                        
+                 
+                    }
+  
+                });
+
+            }
+
+            function get_delete(id)
+            {
+                
+                $.ajax({
+                    
+                    type: 'POST',
+                    url: '/delete',
+                    dataType: 'JSON',
+                    data:{"id": id},
+                    
+                    success:function(data)
+                    {
+                        alert("Record Deleted");
+                        getall();
+                    }            
+                });
+            }
+   
+        </script>
+	
+	
+	
+	
 		
-			function getAll()
-			{
-				
-				$.
-					$.ajax({
-						
-						
-						success:function(data)
-						{
-							
-							
-							
-						
-						}
-						
-						
-						
-					});
-					
-					
-			}
-			
-			
-			
-			
-			
-		</script>
-	
-	
-	</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 	<h2>Student Registration</h2>
-			<tr>
-				<div align="left">
-					<h3>
-						<a th:href="@{'/Student/addstudent'}">Add new</a>
-					</h3>
-				</div>
-			</tr>
-
-
-			<div class="col-sm-8" align="center">
-				<div class="panel-body" align="center">
-
-					<table class="table">
-						<thead class="thead-dark">
-							<tr>
-								<th>Student ID</th>
-								<th>Student first name</th>
-								<th>Student last name</th>
-								<th>Student age</th>
-								<th>Student address</th>
-								<th>Student postcode</th>
-								<th>edit</th>
-								<th>delete</th>
-							</tr>
-						</thead>
-
-						<tbody>
-							<tr th:each="student : ${liststudent}">
-								<td th:text="${student.id}">Student ID</td>
-								<td th:text="${student.firstName}">Student Name</td>
-								<td th:text="${student.lastName}">Course</td>
-								<td th:text="${student.age}">Student Age</td>
-								<td th:text="${student.address}">Student Name</td>
-								<td th:text="${student.postcode}">Course</td>
-								<td><a th:href="@{'/Student/edit/' + ${student.id}}">Edit</a>
-								</td>
-								<td><a th:href="@{'/Student/delete/' + ${student.id}}">Delete</a>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-
-				</div>
-			</div>
-
-			</tr>
-
-			</tbody>
-			</table>
- -->
-
-<!-- <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script >
-	function test(){
-		alert("hello");
-	}
-
-</script>
-</head>
-<body>
-
-<div> First name: <input type="text" id ="firstname"></div>
-<div> Last Name: <input type="text" id ="lastname"></div>
-<div> Age: <input type="text" id ="age"></div>
-<div> Address: <input type="text" id ="address"></div>
-<div> Postcode: <input type="text" id ="postcode"></div>
-<div>  <input type ="button" value ="submit" onclick="test()"  ></div>
-</body>
-</html> -->

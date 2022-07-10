@@ -1,5 +1,16 @@
 package com.sg.vendingmachine.controller;
 
+import java.util.List;
+
+import com.sg.vendingmachine.dao.VendingMachinePersistenceException;
+import com.sg.vendingmachine.dto.Item;
+import com.sg.vendingmachine.service.VendingMachineDataValidationException;
+import com.sg.vendingmachine.service.VendingMachineDuplicateIdException;
+import com.sg.vendingmachine.service.VendingMachineServiceLayer;
+import com.sg.vendingmachine.ui.UserIO;
+import com.sg.vendingmachine.ui.UserIOConsoleImpl;
+import com.sg.vendingmachine.ui.VendingMachineView;
+
 public class VendingMachineController {
 	// private VendingMachineView view = new VendingMachineView();
 		// private VendingMachineDao dao = new VendingMachineDaoFileImpl();
@@ -25,54 +36,20 @@ public class VendingMachineController {
 
 					
 					  io.print("Main Menu"); 
-					  
-					  //io.print("1. List Student IDs");
-					  io.print("1. List Item Names");
-					  io.print("2. Create New Item"); 
-					  io.print("3. View a Item");
-					  
-					  //io.print("4. Remove a Student"); 
-					  io.print("4. Remove a Item"); 
-					  io.print("5. Exit");
-					
-
-					 menuSelection = io.readInt("Please select from the" +
-					 " above choices.", 1, 5);
-					//menuSelection = getMenuSelection();
-
-					switch (menuSelection) {
-					case 1:
-						io.print(">");
-						io.print("LISTING ITEMS");
-						listItems();
-					case 2:
-						io.print(">");
-						io.print("CREATE ITEM");
-						createItem();
-
-						break;
-					case 3:
-						io.print(">");
-						io.print("VIEW ITEM");
-						viewItem();
-						break;
-
-					case 4:
-						io.print(">");
-						io.print("REMOVE ITEM");
-						removeItem();
-
-						break;
-					case 5:
-						keepGoing = false;
-						break;
-					default:
-						io.print(">");
-						io.print("UNKNOWN COMMAND");
-						unknownCommand();
-
+					  listItems();
+					  char answer= io.readChar("Do you wish to place an order(y/n)?");
+					if(answer=='y' || answer=='Y' ) {
+						menuSelection= io.readInt("Select the item you want to order: ");
+						int qty=io.readInt("enter quantity: ");
+						orderItem(menuSelection, qty);
 					}
-
+					else if(answer == 'n'|| answer =='N'){
+						break;
+					}else {
+						io.print("Enter only y or n");
+					}
+					 
+					//menuSelection = getMenuSelection();
 				}
 				exitMessage();
 				// io.print("GOOD BYE");
@@ -87,6 +64,11 @@ public class VendingMachineController {
 		private int getMenuSelection() {
 			return view.printMenuAndGetSelection();
 		}
+		
+		private void orderItem(int menuSelection, int qty) {
+			//To do
+			//order Arraylist
+		};
 
 		private void listItems() throws VendingMachinePersistenceException {
 			view.displayDisplayAllBanner();
@@ -94,21 +76,7 @@ public class VendingMachineController {
 			view.displayItemList(itemList);
 		}
 		
-		private void createItem() throws VendingMachinePersistenceException {
-			view.displayCreateItemBanner();
-			boolean hasErrors = false;
-			do {
-				Item currentItem = view.getNewItemInfo();
-				try {
-					service.createItem(currentItem);
-					view.displayCreateSuccessBanner();
-					hasErrors = false;
-				} catch (VendingMachineDuplicateIdException | VendingMachineDataValidationException e) {
-					hasErrors = true;
-					view.displayErrorMessage(e.getMessage());
-				}
-			} while (hasErrors);
-		}
+		
 
 		private void viewItem() throws VendingMachinePersistenceException {
 			view.displayDisplayItemBanner();

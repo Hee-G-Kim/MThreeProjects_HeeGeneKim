@@ -1,5 +1,7 @@
 package com.sg.vendingmachine.ui;
 
+import java.util.List;
+
 import com.sg.vendingmachine.dto.Item;
 
 public class VendingMachineView {
@@ -10,22 +12,6 @@ public class VendingMachineView {
 	// private UserIO io;
 	public VendingMachineView(UserIO io) {
 		this.io = io;
-	}
-
-	public Item getNewItemInfo() {
-
-		/* Does not work here */
-		// io = new UserIOConsoleImpl();
-
-		String itemId = io.readString("Please enter Item ID");
-		String firstName = io.readString("Please enter First Name");
-		String lastName = io.readString("Please enter Last Name");
-		String cohort = io.readString("Please enter Cohort");
-		Item currentItem = new Item(itemId);
-		currentItem.setFirstName(firstName);
-		currentItem.setLastName(lastName);
-		currentItem.setCohort(cohort);
-		return currentItem;
 	}
 
 	public void displayCreateItemBanner() {
@@ -39,7 +25,7 @@ public class VendingMachineView {
 	public void displayItemList(List<Item> itemList) {
 		for (Item currentItem : itemList) {
 			String itemInfo = String.format("#%s : %s %s", currentItem.getItemId(),
-					currentItem.getFirstName(), currentItem.getLastName());
+					currentItem.getName(), currentItem.getPrice());
 			io.print(itemInfo);
 		}
 		io.readString("Please hit enter to continue.");
@@ -60,8 +46,9 @@ public class VendingMachineView {
 	public void displayItem(Item item) {
 		if (item != null) {
 			io.print(item.getItemId());
-			io.print(item.getFirstName() + " " + item.getLastName());
-			io.print(item.getCohort());
+			io.print(item.getName() + " " + item.getPrice());
+			
+			io.print("" + item.getStockAmt());
 			io.print("");
 		} else {
 			io.print("No such item.");
