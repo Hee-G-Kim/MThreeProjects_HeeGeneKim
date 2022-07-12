@@ -15,7 +15,7 @@ class UnservableCuisineRequestException extends Exception {
     }
 }
 
-public class MyApplication {
+public class                                             {
 	
 	private static final Scanner INPUT_READER = new Scanner(System.in);
     private static final FoodFactory FOOD_FACTORY = FoodFactory.getFactory();
