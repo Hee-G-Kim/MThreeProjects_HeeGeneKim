@@ -28,7 +28,7 @@ public class VendingMachineView {
 					currentItem.getName(), currentItem.getPrice());
 			io.print(itemInfo);
 		}
-		io.readString("Please hit enter to continue.");
+		//io.readString("Please hit enter to continue.");
 	}
 
 	public void displayDisplayAllBanner() {
@@ -56,9 +56,9 @@ public class VendingMachineView {
 		io.readString("Please hit enter to continue.");
 	}
 
-	public void displayRemoveItemBanner() {
-		io.print("=== Remove Item ===");
-	}
+	/*
+	 * public void displayRemoveItemBanner() { io.print("=== Remove Item ==="); }
+	 */
 
 	public void displayRemoveResult(Item itemRecord) {
 		if (itemRecord != null) {
@@ -90,8 +90,8 @@ public class VendingMachineView {
 		io.print(errorMsg);
 		}
 
-	public void displayRemoveSuccessBanner() {
-		System.out.println("Item successfully removed");
+	public void displayItemBoughtSuccessBanner(String itemName) {
+		System.out.println("Here is your item: " + itemName);
 		
 	}
 	

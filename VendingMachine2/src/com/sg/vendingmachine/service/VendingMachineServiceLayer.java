@@ -21,4 +21,4 @@ public interface VendingMachineServiceLayer {
 	Item removeItem(String itemId) throws
 	VendingMachinePersistenceException;
 }
-}
+

@@ -68,15 +68,14 @@ private VendingMachineAuditDao auditDao;
 		VendingMachineDataValidationException {
 		
 		              /**?get from where?*/
-			if (item.getFirstName() == null
-			|| item.getFirstName().trim().length() == 0 //empty/whitespace only,
-			|| item.getLastName() == null
-			|| item.getLastName().trim().length()== 0
-			|| item.getCohort() == null
-			|| item.getCohort().trim().length() == 0) {
+			if (item.getName() == null
+			|| item.getName().trim().length() == 0 //empty/whitespace only,
+			|| item.getPrice() <=  0
+			|| item.getStockAmt() <= 0)
+			 {
 				throw new VendingMachineDataValidationException
 			(
-				"ERROR: All fields [First Name, LastName, Cohort] are required.");
+				"ERROR: All fields [Item Name, Price, Stock Amount] are required.");
 			}
 	
 	}

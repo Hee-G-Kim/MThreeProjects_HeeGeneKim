@@ -47,9 +47,9 @@ public class VendingMachineDaoFileImplTest {
 		
 		String itemId = "0001"; 
 		Item item = new Item(itemId); 
-		item.setFirstName("Ada"); 
-		item.setLastName("Lovelace"); 
-		item.setCohort("Java-May-1845"); 
+		item.setName("Nuts"); 
+		item.setPrice(5); 
+		item.setStockAmt(5); 
 		// Add the item to the DAO
 		testDao.addItem(itemId, item); 
 		// Get the item from the DAO 
@@ -58,11 +58,11 @@ public class VendingMachineDaoFileImplTest {
 		// Check the data is equal 
 		assertEquals(item.getItemId(),retrievedItem.getItemId(), 
 				"Checking item id."); 
-		assertEquals(item.getFirstName(), retrievedItem.getFirstName(), 
+		assertEquals(item.getName(), retrievedItem.getName(), 
 				"Checking item first name."); 
-		assertEquals(item.getLastName(), retrievedItem.getLastName(), 
+		assertEquals(item.getPrice(), retrievedItem.getPrice(), 
 				"Checking item last name."); 
-		assertEquals(item.getCohort(), retrievedItem.getCohort(), 
+		assertEquals(item.getStockAmt(), retrievedItem.getStockAmt(), 
 				"Checking item cohort."); }
 	
 
@@ -75,14 +75,14 @@ public class VendingMachineDaoFileImplTest {
 	public void testAddGetAllItems() throws Exception { 
 		// Create our first item
 		Item firstItem = new Item("0001"); 
-		firstItem.setFirstName("Ada"); 
-		firstItem.setLastName("Lovelace"); 
-		firstItem.setCohort("Java-May-1845"); 
+		firstItem.setName("Nuts"); 
+		firstItem.setPrice(5); 
+		firstItem.setStockAmt(5); 
 		// Create our second item 
 		Item secondItem = new Item("0002"); 
-		secondItem.setFirstName("Charles"); 
-		secondItem.setLastName("Babbage"); 
-		secondItem.setCohort(".NET-May-1845"); 
+		secondItem.setName("Coki"); 
+		secondItem.setPrice(5); 
+		secondItem.setStockAmt(5); 
 		// Add both our items to the DAO
 		testDao.addItem(firstItem.getItemId(), firstItem); 
 		testDao.addItem(secondItem.getItemId(), secondItem); 
@@ -114,13 +114,13 @@ public class VendingMachineDaoFileImplTest {
 	@Test public void testRemoveItem() throws Exception { 
 		// Create two new items 
 		Item firstItem = new Item("0001"); 
-		firstItem.setFirstName("Ada"); 
-		firstItem.setLastName("Lovelace"); 
-		firstItem.setCohort("Java-May-1945"); 
+		firstItem.setName("Nuts"); 
+		firstItem.setPrice(5); 
+		firstItem.setStockAmt(5); 
 		Item secondItem = new Item("0002"); 
-		secondItem.setFirstName("Charles"); 
-		secondItem.setLastName("Babbage"); 
-		secondItem.setCohort(".NET-May-1945"); 
+		secondItem.setName("chocki"); 
+		secondItem.setPrice(5); 
+		secondItem.setStockAmt(5); 
 		
 		// Add both to the DAO
 

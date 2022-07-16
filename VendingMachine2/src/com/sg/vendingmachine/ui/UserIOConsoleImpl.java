@@ -1,5 +1,6 @@
 package com.sg.vendingmachine.ui;
 
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class UserIOConsoleImpl implements UserIO {
@@ -146,9 +147,6 @@ public class UserIOConsoleImpl implements UserIO {
 		 * read in from the console should be the return of the method.
 		 */
 
-
-		
-
 		long inputLong;
 
 		do {
@@ -175,6 +173,13 @@ public class UserIOConsoleImpl implements UserIO {
 		print(prompt);
 		String inputString = scanner.next();
 		return inputString.charAt(0);
+	}
+
+	@Override
+	public BigDecimal readBigDecimal(String prompt) {
+		print(prompt);
+		BigDecimal BigDecimal = scanner.nextBigDecimal();
+		return BigDecimal;
 	}
 	
 	

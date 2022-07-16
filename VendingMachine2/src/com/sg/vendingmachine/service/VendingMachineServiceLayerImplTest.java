@@ -1,13 +1,22 @@
 package com.sg.vendingmachine.service;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import org.junit.jupiter.api.Test;
+
+/*import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+*/
 import com.sg.vendingmachine.dao.VendingMachineAuditDao;
 import com.sg.vendingmachine.dao.VendingMachineDao;
 import com.sg.vendingmachine.dao.VendingMachinePersistenceException;
@@ -27,9 +36,9 @@ public class VendingMachineServiceLayerImplTest {
 	public void testCreateValidItem() {
 		// ARRANGE
 		Item item = new Item("0002");
-		item.setFirstName("Charles");
-		item.setLastName("Babbage");
-		item.setCohort(".NET-May-1845");
+		item.setName("mint");
+		item.setPrice(3.00);
+		item.setStockAmt(5);
 		// ACT
 		try {
 			service.createItem(item);
@@ -43,10 +52,10 @@ public class VendingMachineServiceLayerImplTest {
 	@Test
 	public void testCreateDuplicateIdItem() {
 		// ARRANGE
-		Item item = new Item("0001");
-		item.setFirstName("Charles");
-		item.setLastName("Babbage");
-		item.setCohort(".NET-May-1845");
+		Item item = new Item("0006");
+		item.setName("chocko");
+		item.setPrice(4);
+		item.setStockAmt(5);
 		// ACT
 		try {
 			service.createItem(item);
@@ -63,9 +72,9 @@ public class VendingMachineServiceLayerImplTest {
 	public void testCreateItemInvalidData() throws Exception {
 		// ARRANGE
 		Item item = new Item("0002");
-		item.setFirstName("");
-		item.setLastName("Babbage");
-		item.setCohort(".NET-May-1845");
+		item.setName("");
+		item.setPrice(5);
+		item.setStockAmt(6);
 		// ACT
 		try {
 			service.createItem(item);
@@ -82,9 +91,9 @@ public class VendingMachineServiceLayerImplTest {
 	public void testGetAllItems() throws Exception {
 		// ARRANGE
 		Item testClone = new Item("0001");
-		testClone.setFirstName("Ada");
-		testClone.setLastName("Lovelace");
-		testClone.setCohort("Java-May-1845");
+		testClone.setName("Nuts");
+		testClone.setPrice(5);
+		testClone.setStockAmt(5);
 		// ACT & ASSERT
 		assertEquals(1, service.getAllItems().size(), "Should only have one item.");
 		assertTrue(service.getAllItems().contains(testClone), "The one item should be Ada.");
@@ -94,9 +103,9 @@ public class VendingMachineServiceLayerImplTest {
 	public void testGetItem() throws Exception {
 		// ARRANGE
 		Item testClone = new Item("0001");
-		testClone.setFirstName("Ada");
-		testClone.setLastName("Lovelace");
-		testClone.setCohort("Java-May-1845");
+		testClone.setName("Nuts");
+		testClone.setPrice(5);
+		testClone.setStockAmt(5);
 		// ACT & ASSERT
 		Item shouldBeAda = service.getItem("0001");
 		assertNotNull(shouldBeAda, "Getting 0001 should be not null.");
@@ -109,13 +118,13 @@ public class VendingMachineServiceLayerImplTest {
 	public void testRemoveItem() throws Exception {
 		// ARRANGE
 		Item testClone = new Item("0001");
-		testClone.setFirstName("Ada");
-		testClone.setLastName("Lovelace");
-		testClone.setCohort("Java-May-1845");
+		testClone.setName("Nuts");
+		testClone.setPrice(5);
+		testClone.setStockAmt(5);
 		// ACT & ASSERT
 		Item shouldBeAda = service.removeItem("0001");
 		assertNotNull(shouldBeAda, "Removing 0001 should be not null.");
-		assertEquals(testClone, shouldBeAda, "Item removed from 0001 should be Ada.");
+		assertEquals(testClone, shouldBeAda, "Item removed from 0001 should be Nuts.");
 		Item shouldBeNull = service.removeItem("0042");
 		assertNull(shouldBeNull, "Removing 0042 should be null.");
 	}

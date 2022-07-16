@@ -86,7 +86,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
 		Scanner scanner;
 		try {
 			// Create Scanner for reading the file
-			System.out.println(new File(ROSTER_FILE).getAbsolutePath());
+			//System.out.println(new File(ROSTER_FILE).getAbsolutePath());
 			scanner = new Scanner(new BufferedReader(new FileReader(ROSTER_FILE)));
 		} catch (FileNotFoundException e) {
 			throw new VendingMachinePersistenceException("-_- Could not load roster data into memory.", e);
@@ -122,11 +122,11 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
 		String itemAsText = aItem.getItemId() + DELIMITER;
 		// add the rest of the properties in the correct order:
 		// FirstName
-		itemAsText += aItem.getFirstName() + DELIMITER;
+		itemAsText += aItem.getName() + DELIMITER;
 		// LastName
-		itemAsText += aItem.getLastName() + DELIMITER;
+		itemAsText += aItem.getPrice() + DELIMITER;
 		// Cohort - don't forget to skip the DELIMITER here.
-		itemAsText += aItem.getCohort();
+		itemAsText += aItem.getStockAmt();
 		// We have now turned a item to text! Return it!
 		return itemAsText;
 	}

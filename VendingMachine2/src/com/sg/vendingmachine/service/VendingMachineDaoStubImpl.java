@@ -13,9 +13,9 @@ public class VendingMachineDaoStubImpl implements VendingMachineDao {
 
 	public VendingMachineDaoStubImpl() {
 		onlyItem = new Item("0001");
-		onlyItem.setFirstName("Ada");
-		onlyItem.setLastName("Lovelace");
-		onlyItem.setCohort("Java-May-1845");
+		onlyItem.setName("Nuts");
+		onlyItem.setPrice(5);
+		onlyItem.setStockAmt(5);
 	}
 
 	public VendingMachineDaoStubImpl(Item testItem) {

@@ -1,9 +1,13 @@
 package com.sg.vendingmachine.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 import com.sg.vendingmachine.dao.VendingMachinePersistenceException;
 import com.sg.vendingmachine.dto.Item;
+import com.sg.vendingmachine.service.ChangeDistributor;
+import com.sg.vendingmachine.service.ChangeDistributor.Unit;
 import com.sg.vendingmachine.service.VendingMachineDataValidationException;
 import com.sg.vendingmachine.service.VendingMachineDuplicateIdException;
 import com.sg.vendingmachine.service.VendingMachineServiceLayer;
@@ -29,8 +33,7 @@ public class VendingMachineController {
 		public void run() {
 
 			boolean keepGoing = true;
-			int menuSelection = 0;
-
+			
 			try {
 				while (keepGoing) {
 
@@ -39,9 +42,11 @@ public class VendingMachineController {
 					  listItems();
 					  char answer= io.readChar("Do you wish to place an order(y/n)?");
 					if(answer=='y' || answer=='Y' ) {
-						menuSelection= io.readInt("Select the item you want to order: ");
-						int qty=io.readInt("enter quantity: ");
-						orderItem(menuSelection, qty);
+						String menuSelection= Integer.toString(io.readInt("Select the item you want to order: "));
+						//int qty=io.readInt("enter quantity: ");
+						//orderItem(menuSelection, qty);
+						BigDecimal amountPayed= io.readBigDecimal("Enter amount payed: ");
+						orderItem(menuSelection , amountPayed);
 					}
 					else if(answer == 'n'|| answer =='N'){
 						break;
@@ -65,9 +70,13 @@ public class VendingMachineController {
 			return view.printMenuAndGetSelection();
 		}
 		
-		private void orderItem(int menuSelection, int qty) {
+//		private void orderItem(int menuSelection, int qty) {
+//			//To do
+//			//order Arraylist
+//		};
+		private void orderItem(String menuSelection, BigDecimal monies) throws VendingMachinePersistenceException {
 			//To do
-			//order Arraylist
+			removeItem(menuSelection, monies);
 		};
 
 		private void listItems() throws VendingMachinePersistenceException {
@@ -85,11 +94,18 @@ public class VendingMachineController {
 			view.displayItem(item);
 		}
 
-		private void removeItem() throws VendingMachinePersistenceException {
-			view.displayRemoveItemBanner();
-			String itemId = view.getItemIdChoice();
-			service.removeItem(itemId);
-			view.displayRemoveSuccessBanner();
+		private void removeItem(String menuSelection, BigDecimal amountPayed) throws VendingMachinePersistenceException {
+			//view.displayRemoveItemBanner();
+			//String itemId = view.getItemIdChoice();
+						
+			Item itemRemoved= service.removeItem(menuSelection);
+			ChangeDistributor cd= new ChangeDistributor();
+			BigDecimal price = BigDecimal.valueOf(itemRemoved.getPrice());
+			Map<Unit, Integer> changeDue = cd.getUnit(amountPayed, price );
+			for(Unit unit : changeDue.keySet()) {
+	            System.out.println("Return " + unit + " bill(s) : "+ changeDue.get(unit));
+	        }
+			view.displayItemBoughtSuccessBanner(itemRemoved.getName());
 		}
 
 		private void unknownCommand() {
