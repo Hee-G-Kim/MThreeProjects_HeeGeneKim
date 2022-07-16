@@ -1,4 +1,0 @@
-venus bar::$3.40::10
-thick chips::$5.00::3
-milk shake::$3.40::1
-choc cookie::$5.00::0

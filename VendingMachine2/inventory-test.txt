@@ -1,0 +1,4 @@
+1::venus bar::3.40::10
+2::thick chips::5.00::3
+3::milk shake::3.40::1
+4::choc cookie::5.00::0

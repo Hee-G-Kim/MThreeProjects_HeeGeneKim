@@ -24,7 +24,7 @@ public class VendingMachineView {
 
 	public void displayItemList(List<Item> itemList) {
 		for (Item currentItem : itemList) {
-			String itemInfo = String.format("#%s : %s %s", currentItem.getItemId(),
+			String itemInfo = String.format("#%s : %s %f", currentItem.getItemId(),
 					currentItem.getName(), currentItem.getPrice());
 			io.print(itemInfo);
 		}

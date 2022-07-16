@@ -32,7 +32,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
 	public static final String DELIMITER = "::";
 
 	public VendingMachineDaoFileImpl() {
-		ROSTER_FILE = "roster.txt";
+		ROSTER_FILE = "inventory-test.txt";
 	}
 
 	public VendingMachineDaoFileImpl(String rosterTextFile) {
@@ -63,11 +63,13 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
 		// However, there are 3 remaining tokens that need to be set into the
 		// new item object. Do this manually by using the appropriate setters.
 		// Index 1 - FirstName
-		itemFromFile.setFirstName(itemTokens[1]);
+		
+		itemFromFile.setName(itemTokens[1]);
+		
 		// Index 2 - LastName
-		itemFromFile.setLastName(itemTokens[2]);
+		itemFromFile.setPrice(Float.parseFloat(itemTokens[2]));
 		// Index 3 - Cohort
-		itemFromFile.setCohort(itemTokens[3]);
+		itemFromFile.setStockAmt(Integer.parseInt(itemTokens[3]));
 		// We have now created a item! Return it!
 		return itemFromFile;
 	}
