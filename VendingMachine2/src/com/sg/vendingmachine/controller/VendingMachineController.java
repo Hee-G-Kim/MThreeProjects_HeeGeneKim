@@ -42,7 +42,8 @@ public class VendingMachineController {
 					  listItems();
 					  char answer= io.readChar("Do you wish to place an order(y/n)?");
 					if(answer=='y' || answer=='Y' ) {
-						String menuSelection= Integer.toString(io.readInt("Select the item you want to order: "));
+						String menuSelection= Integer.toString(io.readInt("Select the item you want to "
+								+ "order: "));
 						//int qty=io.readInt("enter quantity: ");
 						//orderItem(menuSelection, qty);
 						BigDecimal amountPayed= io.readBigDecimal("Enter amount payed: ");
@@ -75,7 +76,7 @@ public class VendingMachineController {
 //			//order Arraylist
 //		};
 		private void orderItem(String menuSelection, BigDecimal monies) throws VendingMachinePersistenceException {
-			//To do
+			//
 			removeItem(menuSelection, monies);
 		};
 
@@ -94,7 +95,8 @@ public class VendingMachineController {
 			view.displayItem(item);
 		}
 
-		private void removeItem(String menuSelection, BigDecimal amountPayed) throws VendingMachinePersistenceException {
+		private void removeItem(String menuSelection, BigDecimal amountPayed) throws 
+												VendingMachinePersistenceException {
 			//view.displayRemoveItemBanner();
 			//String itemId = view.getItemIdChoice();
 						

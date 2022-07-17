@@ -35,12 +35,14 @@ public class DVDLibraryController {
 				  io.print("1. List DVD Titles");
 				  io.print("2. Create New Dvd"); 
 				  io.print("3. View a Dvd");
-				  io.print("4. Remove a Dvd"); 
-				  io.print("5. Exit");
+				  io.print("4. Remove a Dvd");
+				  io.print("5. Show movies after year 2000");
+				  io.print("6. Show average year of movies");
+				  io.print("15. Exit");
 				
 
 				 menuSelection = io.readInt("Please select from the" +
-				 " above choices.", 1, 5);
+				 " above choices.", 1, 15);
 				//menuSelection = getMenuSelection();
 
 				switch (menuSelection) {
@@ -69,6 +71,18 @@ public class DVDLibraryController {
 
 					break;
 				case 5:
+					io.print(">");
+					io.print("Show movies After 2000");
+					showDvdAfter2000();
+
+					break;
+				case 6:
+					io.print(">");
+					io.print("Show average age of movies");
+					showAverageAgeMovies();
+
+					break;
+				case 15:
 					keepGoing = false;
 					break;
 				default:
@@ -131,6 +145,19 @@ public class DVDLibraryController {
 
 	private void exitMessage() {
 		view.displayExitBanner();
+	}
+	
+	//--Exercise: DVD Library Lambdas and Streams:
+	
+	
+	private void showDvdAfter2000() throws DVDLibraryDaoException {
+		view.displayShowMoviesFromYearsDvdBanner("2000");
+		dao.findAllMoviesWithinYears();
+	}
+	
+	private void showAverageAgeMovies() throws DVDLibraryDaoException {
+		
+		dao.getAverageAgeMovies();
 	}
 
 }

@@ -9,7 +9,7 @@ import com.sg.dvdlibrary.dto.Dvd;
 
 public class DVDLibraryView {
 
-	// ???private UserIO io = new UserIOConsoleImpl();
+	// ?private UserIO io = new UserIOConsoleImpl();
 		private UserIO io;
 
 		// private UserIO io;
@@ -108,7 +108,6 @@ public class DVDLibraryView {
 		}
 
 		public int printMenuAndGetSelection() {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 		
@@ -119,4 +118,9 @@ public class DVDLibraryView {
 			io.print("=== ERROR ===");
 			io.print(errorMsg);
 			}
+		
+		//-----Exercise: DVD Library Lambdas and Streams:
+		public void displayShowMoviesFromYearsDvdBanner(String year) {
+		io.print("=== Movies from " + year +" ===");
+		}
 }

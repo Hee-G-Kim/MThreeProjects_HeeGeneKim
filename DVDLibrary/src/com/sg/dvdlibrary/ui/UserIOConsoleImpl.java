@@ -34,14 +34,12 @@ public class UserIOConsoleImpl implements UserIO {
 	@Override
 	public double readDouble(String prompt, double min, double max) {
 		/*
-		 * // TODO Display a prompt to the user to enter a double between a specified
+		 * //Display a prompt to the user to enter a double between a specified
 		 * min and max range, and read in a double. If the user's number does not fall
 		 * within the range, keep prompting the user for new input until it does. The
 		 * prompt message and min and max values should be passed in as parameters. The
 		 * value read in from the console should be the return of the method.
 		 */
-	
-
 		Double inputDouble;
 
 		do {
@@ -55,7 +53,7 @@ public class UserIOConsoleImpl implements UserIO {
 	@Override
 	public float readFloat(String prompt) {
 		/*
-		 * // TODO Display a given message String to prompt the user to enter a float
+		 * // Display a given message String to prompt the user to enter a float
 		 * and then read in the user response and return that float value. The prompt
 		 * message value should be passed in as a parameter and the value that is read
 		 * in should be the return of the method.
@@ -69,7 +67,7 @@ public class UserIOConsoleImpl implements UserIO {
 	@Override
 	public float readFloat(String prompt, float min, float max) {
 		/*
-		 * // TODO Display a prompt to the user to enter a float between a specified min
+		 * //  Display a prompt to the user to enter a float between a specified min
 		 * and max range, and read in a float. If the user's number does not fall within
 		 * the range, keep prompting the user for new input until it does. The prompt
 		 * message and min and max values should be passed in as parameters. The value
@@ -131,7 +129,7 @@ public class UserIOConsoleImpl implements UserIO {
 	@Override
 	public long readLong(String prompt) {
 		/*
-		 * TODO Display a given message String to prompt the user to enter in a long,
+		 *  Display a given message String to prompt the user to enter in a long,
 		 * then read in the user response and return that long value. The prompt message
 		 * value should be passed in as a parameter and the value that is read in should
 		 * be the return of the method.;

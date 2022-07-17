@@ -85,7 +85,6 @@ public class VendingMachineView {
 	}
 
 	public int printMenuAndGetSelection() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	
