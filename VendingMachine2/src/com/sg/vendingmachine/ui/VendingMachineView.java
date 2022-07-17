@@ -23,12 +23,19 @@ public class VendingMachineView {
 	}
 
 	public void displayItemList(List<Item> itemList) {
-		for (Item currentItem : itemList) {
-			String itemInfo = String.format("#%s : %s %f", currentItem.getItemId(),
-					currentItem.getName(), currentItem.getPrice());
-			io.print(itemInfo);
-		}
+		/*
+		 * for (Item currentItem : itemList) { String itemInfo =
+		 * String.format("#%s : %s %f", currentItem.getItemId(), currentItem.getName(),
+		 * currentItem.getPrice()); io.print(itemInfo); }
+		 */
 		//io.readString("Please hit enter to continue.");
+		
+		itemList.stream()
+			.forEach((p) -> {
+				String itemInfo = String.format("#%s : %s %f", p.getItemId(),
+						p.getName(), p.getPrice());
+				io.print(itemInfo);
+			});	
 	}
 
 	public void displayDisplayAllBanner() {
@@ -94,7 +101,6 @@ public class VendingMachineView {
 		System.out.println("Here is your item: " + itemName);
 		
 	}
-	
 	
 	
 }
