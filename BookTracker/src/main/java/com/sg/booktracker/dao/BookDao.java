@@ -1,9 +1,7 @@
 
 package main.java.com.sg.booktracker.dao;
 
-
 import java.util.List;
-
 import main.java.com.sg.booktracker.dto.Book;
 
 /**
