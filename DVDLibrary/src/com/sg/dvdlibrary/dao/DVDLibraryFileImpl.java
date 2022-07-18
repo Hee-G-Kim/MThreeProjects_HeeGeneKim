@@ -9,7 +9,9 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +43,7 @@ public class DVDLibraryFileImpl implements DVDLibraryDao {
 
 		String[] dvdTokens = dvdAsText.split(DELIMITER);
 		String dvdName = dvdTokens[0];
-		System.out.println(dvdTokens[1]);
+		//System.out.println(dvdTokens[1]);
 		Dvd dvdFromFile = new Dvd(dvdName);
 		try {
 			dvdFromFile.setReleaseDate(new SimpleDateFormat("dd/MM/yyyy").parse(dvdTokens[1]));
@@ -157,12 +159,22 @@ public class DVDLibraryFileImpl implements DVDLibraryDao {
 	public void findAllMoviesWithinYears() throws DVDLibraryDaoException {
 		
 		loadDvdLibrary();
-		((Collection<Dvd>) dvds).stream()
-		.filter((dvds) -> dvds.getReleaseDate().getYear() >=2000)
-		.forEach((dvds) -> {
-			System.out.println(dvds.getDvdTitle());
-			System.out.println(dvds.getReleaseDate());
-			});
+		 
+		//.filter((dvds) -> dvds.getReleaseDate().getYear() >=2000)
+		
+		dvds.forEach((id, dvd ) -> 
+		{ 
+			Calendar c = new GregorianCalendar();
+			c.setTime(dvd.getReleaseDate());
+			if(c.get(Calendar.YEAR) >= 2000) {
+		 System.out.println(dvd.getDvdTitle());
+		  System.out.println(dvd.getReleaseDate()); } });
+		 
+//		dvds.values().stream().filter(dvd -> dvd.getReleaseDate().getYear() >=2000).forEach(dvd ->
+//				{System.out.println(dvd.getDvdTitle());
+//				System.out.println(dvd.getReleaseDate());
+//				});
+		
 		
 		//return new ArrayList(dvds.values());
 	}
