@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 
 import com.sg.vendingmachine.dto.Item;
@@ -209,13 +210,25 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
 	@Override
 	public Item removeItem(String itemId) throws VendingMachinePersistenceException {
 		loadRoster();
-		Item removedItem = items.remove(itemId);
-		writeRoster();
-		return removedItem;
+		Item itemBought = items.get(itemId);
+		if(Objects.nonNull(itemBought)) {
+			int amountInHand = itemBought.getStockAmt();
+			if(amountInHand >0 && (amountInHand -1) > 0) {
+				itemBought.setStockAmt(amountInHand -1);
+				items.put(itemId, itemBought);
+				writeRoster();
+			}else {
+				System.out.println("No more Items Available");
+			}
+			
+		}
+				//items.remove(itemId);
+		
+		return itemBought;
 	}
 	/*
 	 * @Override public Item removeItem(String itemId) { Item
-	 * removedItem = items.remove(itemId); return removedItem; }
+	 * itemBought = items.remove(itemId); return itemBought; }
 	 */
 
 }

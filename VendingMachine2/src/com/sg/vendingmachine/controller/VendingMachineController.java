@@ -3,6 +3,7 @@ package com.sg.vendingmachine.controller;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import com.sg.vendingmachine.dao.VendingMachinePersistenceException;
 import com.sg.vendingmachine.dto.Item;
@@ -101,13 +102,16 @@ public class VendingMachineController {
 			//String itemId = view.getItemIdChoice();
 						
 			Item itemRemoved= service.removeItem(menuSelection);
-			ChangeDistributor cd= new ChangeDistributor();
-			BigDecimal price = BigDecimal.valueOf(itemRemoved.getPrice());
-			Map<Unit, Integer> changeDue = cd.getUnit(amountPayed, price );
-			for(Unit unit : changeDue.keySet()) {
-	            System.out.println("Return " + unit + " bill(s) : "+ changeDue.get(unit));
-	        }
-			view.displayItemBoughtSuccessBanner(itemRemoved.getName());
+			if (Objects.nonNull(itemRemoved)) {
+				ChangeDistributor cd= new ChangeDistributor();
+				BigDecimal price = BigDecimal.valueOf(itemRemoved.getPrice());
+				Map<Unit, Integer> changeDue = cd.getUnit(amountPayed, price );
+				for(Unit unit : changeDue.keySet()) {
+		            System.out.println("Return " + unit + " bill(s) : "+ changeDue.get(unit));
+		        }
+				view.displayItemBoughtSuccessBanner(itemRemoved.getName());
+			}
+			
 		}
 
 		private void unknownCommand() {
