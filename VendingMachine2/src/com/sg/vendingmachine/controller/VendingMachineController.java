@@ -107,7 +107,7 @@ public class VendingMachineController {
 				BigDecimal price = BigDecimal.valueOf(itemRemoved.getPrice());
 				Map<Unit, Integer> changeDue = cd.getUnit(amountPayed, price );
 				for(Unit unit : changeDue.keySet()) {
-		            System.out.println("Return " + unit + " bill(s) : "+ changeDue.get(unit));
+		            System.out.println("Return " + unit + " : "+ changeDue.get(unit));
 		        }
 				view.displayItemBoughtSuccessBanner(itemRemoved.getName());
 			}
