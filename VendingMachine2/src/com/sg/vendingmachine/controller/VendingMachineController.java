@@ -102,6 +102,7 @@ public class VendingMachineController {
 			//String itemId = view.getItemIdChoice();
 						
 			Item itemRemoved= service.removeItem(menuSelection);
+			//System.out.println(itemRemoved);
 			if (Objects.nonNull(itemRemoved)) {
 				ChangeDistributor cd= new ChangeDistributor();
 				BigDecimal price = BigDecimal.valueOf(itemRemoved.getPrice());

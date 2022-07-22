@@ -213,18 +213,20 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
 		Item itemBought = items.get(itemId);
 		if(Objects.nonNull(itemBought)) {
 			int amountInHand = itemBought.getStockAmt();
-			if(amountInHand >0 && (amountInHand -1) > 0) {
+			if(amountInHand >0 ) {
 				itemBought.setStockAmt(amountInHand -1);
 				items.put(itemId, itemBought);
 				writeRoster();
+				return itemBought;
 			}else {
 				System.out.println("No more Items Available");
+				return null;
 			}
-			
-		}
+			//&& (amountInHand -1) > 0
+		}else return null;
 				//items.remove(itemId);
 		
-		return itemBought;
+		
 	}
 	/*
 	 * @Override public Item removeItem(String itemId) { Item

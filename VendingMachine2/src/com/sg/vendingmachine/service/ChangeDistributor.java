@@ -47,7 +47,12 @@ public class ChangeDistributor {
                 change = values [1];
             }
 
+        }if(change.intValue() ==1) {
+            changeReturn.put(Unit.ONE, 1);
+           
         }
+
+        
         return changeReturn;
     }
 
